@@ -16,12 +16,18 @@ spec:
     spec:
       containers:
       - name: jenkins
-        image: jenkins/jenkins:lts
+        #custom image of jenkins with a built in container solution - docker engine
+        image: bonvoyage/jenkins-with-docker:1.0
         ports:
         - containerPort: 8080
         volumeMounts:
           - name: jenkins-home
             mountPath: /var/jenkins_home
+          - name: docker-socket
+            mountPath: /var/run/docker.sock
       volumes:
         - name: jenkins-home
           emptyDir: {}
+        - name: docker-socket
+          hostPath:
+            path: /var/run/docker.sock
