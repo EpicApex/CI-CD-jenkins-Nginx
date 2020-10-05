@@ -5,11 +5,11 @@
         1.1.2) CMD ["nginx" "-g" "daemon off;"]
 
     1.2) Edit static content
-        1.2.1) Default nginx static content /usr/share/nginx/html/index.html changed for exercise purpose to "Hello World"
+        1.2.1) Default nginx static content /usr/share/nginx/html/index.html changed for exercise purpose to "Hello World" by curl and copy in docker file - of index.html
 
     1.3) Push image to dockerHub
-        1.3.1) docker build -t bonvoyage/nginx-webserver-project:1.0 .
-        1.3.2) docker push bonvoyage/nginx-webserver-project:1.0
+        1.3.1) docker build -t bonvoyage/nginx-webserver-project:1.3 .
+        1.3.2) docker push bonvoyage/nginx-webserver-project:1.3
 
 2) Create nginx-ns namespace for k8s cluster
 
@@ -28,4 +28,11 @@
         5.2.1) k apply -n nginx-ns ingress-nginx.yaml
         5.2.1) Defined to direct http requests to port 80
 
-6) Push 
+6) Verify that index.html is indeed altered with the new dockerHub image curled from git repo.
+    6.1.1) Push local repo to github https://github.com/EpicApex/CI-CD-jenkins-Nginx to begin the CI/CD process
+
+7) Deploy jenkins locally
+    7.1.1) Service : k apply -n nginx-ns -f service-jenkins.yaml
+    7.1.2) Deployment : k apply -n nginx-ns -f deployment-jenkins.yaml
+    7.1.3) Login to Jenkins using the adming password from jenkins container - cat /var/jenkins_home/secrets/initialAdminPassword 
+
