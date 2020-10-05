@@ -8,7 +8,7 @@ node {
 
     stage('Build image') {
         /* This builds the actual image */
-        app = docker.build("https://hub.docker.com/repositories")
+        app = docker.build("bonvoyage/nginx-webserver-project")
     }
 
     stage('Test image') {

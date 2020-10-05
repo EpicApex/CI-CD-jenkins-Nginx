@@ -31,8 +31,10 @@
 6) Verify that index.html is indeed altered with the new dockerHub image curled from git repo.
     6.1.1) Push local repo to github https://github.com/EpicApex/CI-CD-jenkins-Nginx to begin the CI/CD process
 
-7) Deploy jenkins locally
+7) Deploy jenkins locally - http://localhost:32015/
     7.1.1) Service : k apply -n nginx-ns -f service-jenkins.yaml
     7.1.2) Deployment : k apply -n nginx-ns -f deployment-jenkins.yaml
-    7.1.3) Login to Jenkins using the adming password from jenkins container - cat /var/jenkins_home/secrets/initialAdminPassword 
+    7.1.3) Login to Jenkins using the adming password from jenkins container - cat /var/jenkins_home/secrets/initialAdminPassword
+    7.2.1) Create pipeline job from scm (git)
+    7.2.2) install 'docker pipeline' from plugins to enable the ci/cd pipeline 
 
