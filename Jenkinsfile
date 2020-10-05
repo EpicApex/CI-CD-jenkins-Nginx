@@ -8,7 +8,7 @@ node {
 
     stage('Build image') {
         /* This builds the actual image */
-        app = docker.build("bonvoyage/nginx-webserver-project","--no-cache")
+        app = docker.build("bonvoyage/nginx-webserver-project","-f ./Dockerfile ./ --no-cache")
     }
 
     stage('Test image') {
