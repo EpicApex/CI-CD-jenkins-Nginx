@@ -38,4 +38,5 @@
     7.2.1) Create pipeline job from scm (git)
     7.2.2) install 'docker pipeline' from plugins to enable the ci/cd pipeline
     7.2.3) Create custom jenkins file with docker binaries on them so we can build the image with jenkins using docker under k8s
+    7.2.3) Modified jenkins pipeline job to build images with --no-cache flag ( jenkins cached unchanged index.html from repo which prevented the change from "hello world 1-2")
 

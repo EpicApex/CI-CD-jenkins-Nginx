@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: bonvoyage/nginx-webserver-project:3
+        image: bonvoyage/nginx-webserver-project:latest
         ports:
         - containerPort: 80
         
