@@ -1,0 +1,31 @@
+1) Create Dockerfile which will serve Nginx server.
+
+    1.1) I'll be using the underlying ENTRYPOINT and CMD provided by the base NGINX image. Due to that I did not add an ENTRYPOINT or a CMD to the Dockerfile.
+        1.1.1) ENTRYPOINT ["/docker-entrypoint.sh"]
+        1.1.2) CMD ["nginx" "-g" "daemon off;"]
+
+    1.2) Edit static content
+        1.2.1) Default nginx static content /usr/share/nginx/html/index.html changed for exercise purpose to "Hello World"
+
+    1.3) Push image to dockerHub
+        1.3.1) docker build -t bonvoyage/nginx-webserver-project:1.0 .
+        1.3.2) docker push bonvoyage/nginx-webserver-project:1.0
+
+2) Create nginx-ns namespace for k8s cluster
+
+3) Create nginx deployment
+    3.1) k apply -n nginx-ns deployment-nginx.yaml
+
+4) Create service-nginx 
+    4.1) k apply -n nginx-ns service-nginx.yaml
+
+5) Deploy Ingress
+    5.1) Deploy Ingress controller to recognize and interact with ingress resources under any namespace of k8s cluster - 
+         #note - It is deployed on its own namespace separated from my apps services
+        5.1.1) k apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.40.1/deploy/static/provider/cloud/deploy.yaml
+        
+    5.2) Create ingress-nginx resource 
+        5.2.1) k apply -n nginx-ns ingress-nginx.yaml
+        5.2.1) Defined to direct http requests to port 80
+
+6) Push 
